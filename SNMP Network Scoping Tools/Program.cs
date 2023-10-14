@@ -1,4 +1,4 @@
-//using System;
+using System;
 using System.Collections.Generic;
 using System.Threading;
 using Lextm.SharpSnmpLib;
@@ -184,6 +184,33 @@ namespace SNMPMonitoring
             }
         }
 
+        //getOID. gets the oid and returns the value
+        static string getVariables(string IP, string Community, string OID)
+        {
+            var endpoint = new System.Net.IPEndPoint(System.Net.IPAddress.Parse(IP), 161);
+            var oid = new ObjectIdentifier(OID);
+            var variables = new List<Variable> { new Variable(oid) };
+            var result = Messenger.Get(VersionCode.V2, endpoint, new OctetString(Community), variables, 60000);
+            //return variables
+            return result.ToString();
+        
+        }
+
+        static string[] getTargetInfo(string IP, string Community)
+        {
+            const string sysDescrOID  = "1.3.6.1.2.1.1.1.0";
+            const string sysObjectIDOID  = "1.3.6.1.2.1.1.2.0";
+            const string sysNameOID = "1.3.6.1.2.1.1.5.0";
+
+            string sysDescr = getVariables(IP, Community, sysDescrOID);
+            string sysObjectID = getVariables(IP, Community, sysObjectIDOID);
+            string sysName = getVariables(IP, Community, sysNameOID);
+            
+            //return 
+            string[] targetInfo = {sysDescr, sysObjectID, sysName};
+            return targetInfo;
+        }
+
         /// <summary>
         /// Initiates the monitoring threads for CPU utilization, CPU temperature, and memory utilization.
         /// </summary>
@@ -221,6 +248,20 @@ namespace SNMPMonitoring
 
             Thread Device1 = new Thread(() => Runner(Community, IP));
             Device1.Start();
+
+            //get the target info
+            string[] targetInfo = getTargetInfo(IP, Community);
+            //save  target info to csv
+            string csvPath = $"target_info_{IP}.csv";
+            bool fileExists = File.Exists(csvPath);
+            using (StreamWriter writer = new StreamWriter(csvPath, true))
+            {
+                if (!fileExists)
+                {
+                    writer.WriteLine("Timestamp, System Description, System Object ID, System Name");
+                }
+                writer.WriteLine($"{DateTime.Now}, {targetInfo[0]}, {targetInfo[1]}, {targetInfo[2]}");
+            }
         }
     }
 }
