@@ -191,8 +191,19 @@ namespace SNMPMonitoring
             var oid = new ObjectIdentifier(OID);
             var variables = new List<Variable> { new Variable(oid) };
             var result = Messenger.Get(VersionCode.V2, endpoint, new OctetString(Community), variables, 60000);
+            var compiled_result = "";
+            for (int i = 0; i < result.Count; i++)
+            {
+                //prevent any new lines from being added to the csv
+                var cleaned = result[i].Data.ToString().Replace("\n", " ");
+                cleaned = cleaned.Replace("\r", " ");
+                cleaned = cleaned.Replace("\t", " ");
+                cleaned = cleaned.Replace(",", " ");
+                compiled_result += cleaned + " ";
+
+            }
             //return variables
-            return result.ToString();
+            return compiled_result;
         
         }
 
