@@ -9,7 +9,7 @@ The code base for the capacity planning tools is developed in the C# programming
 Within this folder, includes:
 - An image of the GNS3 GUI, including the testing environment network/topology.
 - An image of the GNS3 VM Interface.
-- An Image of the VM network adapter and virtual ethernet interface (bridged).
+- Imagea of the VM network adapter and virtual ethernet interface (bridged).
 
 This testing environment has been used to prove the functionality of the tools within other folders of this repo. 
 The generated outputs of some tools have directly utilised this network to obtain network information. (i.e. SNMP Network Scoping Tools)
