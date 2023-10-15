@@ -14,21 +14,6 @@ Calculate Required Redundancy: The program will calculate the required redundanc
 
 View Result: The calculated required redundancy (number of redundant links or devices) will be shown on the screen.
 
-Example
-Here is an example of how to use the Redundancy Calculator:
-
-plaintext
-Copy code
-Enter desired uptime percentage (e.g., 99.99):
-99.99
-You entered: 99.99%
-
-Enter average downtime of a single link or device in hours:
-1
-You entered: 1 hours
-
-Required redundancy: 88
-In this example, the user specified a desired uptime percentage of 99.99% and an average downtime of 1 hour. The calculator determined that 88 redundant links or devices are required to achieve this level of uptime.
 
 Error Handling
 The Redundancy Calculator includes error handling to address invalid input scenarios:
@@ -38,8 +23,7 @@ If the average downtime is negative, an error message will be displayed.
 Calculation Method
 The Redundancy Calculator uses the following formula to calculate the required redundancy:
 
-scss
-Copy code
+
 Required Redundancy = Ceiling(Average Downtime / (Uptime Requirement in Hours))
 Average Downtime is the average downtime of a single link or device in hours.
 Uptime Requirement in Hours is calculated based on the desired uptime percentage and is equivalent to the annual downtime allowed to achieve the desired uptime.
