@@ -5,8 +5,7 @@ namespace NetworkCapacityPlanningTool
 {
     public class RedundancyCalculator
     {
-        // ... (rest of the class)
-
+        
         public static void Main(string[] args)
         {
             RedundancyCalculator calculator = new RedundancyCalculator();
