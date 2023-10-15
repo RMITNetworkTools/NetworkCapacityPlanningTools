@@ -249,15 +249,26 @@ public class Program
     /// </summary>
     public static void Main()
     {
-        var selectedDataType = DataType.MB;
-        var selectedTimePeriod = TimePeriod.MONTH;
+        var selectedDataType = DataType.GB;
+        var selectedTimePeriod = TimePeriod.YEAR;
+        var costPerGB = 0.7;
+
 
         var data = GetData(selectedTimePeriod);
         var totalBandwidthFinal = TotalBandwidth(data, selectedDataType);
-        Console.WriteLine($"{totalBandwidthFinal} {DataType.Deconvert(selectedDataType)} per {TimePeriod.Deconvert(selectedTimePeriod)}");
+
+        var totalBandwidthGB = DataType.DataTypeConverter(selectedDataType, DataType.GB, totalBandwidthFinal);
+
+        Console.WriteLine($"Total usage: {totalBandwidthFinal} {DataType.Deconvert(selectedDataType)} per {TimePeriod.Deconvert(selectedTimePeriod)}");
+        var totalCost = (double) totalBandwidthGB * costPerGB;
+        Console.WriteLine($"Total cost: ${totalCost} per {TimePeriod.Deconvert(selectedTimePeriod)}");
+
 
         var average = totalBandwidthFinal / data.Count;
-        Console.WriteLine($"Average: {average} {DataType.Deconvert(selectedDataType)} per user per {TimePeriod.Deconvert(selectedTimePeriod)}");
+        Console.WriteLine($"Average usage: {average} {DataType.Deconvert(selectedDataType)} per user per {TimePeriod.Deconvert(selectedTimePeriod)}");
+
+        var cost = ((double) totalBandwidthGB / data.Count) * costPerGB;
+        Console.WriteLine($"Average cost: ${cost} per user per {TimePeriod.Deconvert(selectedTimePeriod)}");
 
         GenerateData(117);
     }
