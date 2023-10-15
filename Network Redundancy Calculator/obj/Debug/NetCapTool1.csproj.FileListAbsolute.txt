@@ -1,0 +1,7 @@
+C:\Users\Temp\source\repos\NetCapTool1\NetCapTool1\obj\Debug\NetCapTool1.csproj.AssemblyReference.cache
+C:\Users\Temp\source\repos\NetCapTool1\NetCapTool1\obj\Debug\NetCapTool1.csproj.CoreCompileInputs.cache
+C:\Users\Temp\source\repos\NetCapTool1\NetCapTool1\bin\Debug\NetCapTool1.exe.config
+C:\Users\Temp\source\repos\NetCapTool1\NetCapTool1\bin\Debug\NetCapTool1.exe
+C:\Users\Temp\source\repos\NetCapTool1\NetCapTool1\bin\Debug\NetCapTool1.pdb
+C:\Users\Temp\source\repos\NetCapTool1\NetCapTool1\obj\Debug\NetCapTool1.exe
+C:\Users\Temp\source\repos\NetCapTool1\NetCapTool1\obj\Debug\NetCapTool1.pdb
